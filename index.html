@@ -307,6 +307,83 @@
     border-top: 1px solid var(--rule);
     padding-top: 12px;
   }
+
+  /* ── MOBILE ── */
+  @media (max-width: 680px) {
+    body {
+      padding: 0;
+      background: var(--navy);
+    }
+
+    .page {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+    }
+
+    .sidebar {
+      padding: 32px 20px 24px;
+      border-right: none;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .avatar-block {
+      flex-direction: row;
+      text-align: left;
+      gap: 16px;
+    }
+
+    .avatar-block h1 { text-align: left; font-size: 22px; }
+    .avatar-block .role { text-align: left; }
+
+    .avatar-ring {
+      width: 56px;
+      height: 56px;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .metrics-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .metric-pill .num { font-size: 18px; }
+    .metric-pill .desc { font-size: 9px; }
+
+    .main {
+      padding: 28px 20px;
+    }
+
+    .job-header {
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .job-meta {
+      text-align: left;
+    }
+
+    .job-date, .job-duration { text-align: left; }
+
+    .bullets li { font-size: 12px; }
+
+    .summary { font-size: 12.5px; }
+
+    .edu-item {
+      flex-direction: column;
+      gap: 2px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .metrics-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .sidebar { padding: 24px 16px; }
+    .main { padding: 24px 16px; }
+  }
 </style>
 </head>
 <body>
