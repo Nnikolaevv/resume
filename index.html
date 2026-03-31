@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikolai Shamov — Senior Frontend Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1a2d42;
+    --accent: #2ee8a5;
+    --accent-dim: #1ab87e;
+    --muted: #8a9bb0;
+    --light: #e8edf4;
+    --white: #f5f8fc;
+    --rule: #1e3050;
+    --tag-bg: #112236;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @media print {
+    body { background: white !important; color: #111 !important; }
+    .page { box-shadow: none !important; border: none !important; max-width: 100% !important; }
+    .sidebar { background: #1a2d42 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: #07111c;
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 920px;
+    background: var(--navy);
+    border: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 40px 120px rgba(0,0,0,0.6);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--navy-mid);
+    padding: 44px 28px;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .avatar-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .avatar-ring {
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #2196f3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    color: var(--navy);
+    font-weight: bold;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+  }
+
+  .avatar-block h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 21px;
+    font-weight: 400;
+    color: var(--white);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .avatar-block .role {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+  }
+
+  .s-section { display: flex; flex-direction: column; gap: 10px; }
+
+  .s-label {
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 12.5px;
+    color: var(--light);
+    line-height: 1.45;
+  }
+
+  .contact-item .ic {
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    margin-top: 1px;
+    min-width: 14px;
+  }
+
+  .tag-wrap { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  .tag {
+    background: var(--tag-bg);
+    border: 1px solid var(--rule);
+    color: var(--light);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .tag.hot {
+    border-color: var(--accent-dim);
+    color: var(--accent);
+  }
+
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12.5px;
+  }
+
+  .lang-item .lang-name { color: var(--light); font-weight: 500; }
+  .lang-item .lang-level { color: var(--muted); font-size: 11.5px; }
+
+  .metric-pill {
+    background: linear-gradient(135deg, rgba(46,232,165,0.12), rgba(33,150,243,0.08));
+    border: 1px solid rgba(46,232,165,0.25);
+    border-radius: 3px;
+    padding: 10px 12px;
+    text-align: center;
+  }
+
+  .metric-pill .num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .metric-pill .desc {
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.3;
+  }
+
+  .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  /* ── MAIN ── */
+  .main {
+    padding: 44px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .m-section { display: flex; flex-direction: column; gap: 16px; }
+
+  .m-label {
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .m-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .summary {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: var(--light);
+    border-left: 2px solid var(--accent);
+    padding-left: 16px;
+  }
+
+  .summary strong { color: var(--white); }
+
+  /* Experience */
+  .job { display: flex; flex-direction: column; gap: 10px; }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .job-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .job-company {
+    font-size: 12.5px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: 1px;
+  }
+
+  .job-meta {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .job-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .job-duration {
+    font-size: 11px;
+    color: var(--accent-dim);
+    font-weight: 600;
+    text-align: right;
+    margin-top: 2px;
+  }
+
+  .bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+
+  .bullets li {
+    font-size: 12.5px;
+    color: #b8c8da;
+    line-height: 1.6;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 10px;
+    top: 3px;
+  }
+
+  .bullets li strong { color: var(--white); }
+
+  .job + .job {
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .edu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .edu-degree { font-size: 13.5px; font-weight: 600; color: var(--white); }
+  .edu-school { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .edu-year { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+
+  .note {
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+    border-top: 1px solid var(--rule);
+    padding-top: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════ SIDEBAR ══════════ -->
+  <aside class="sidebar">
+
+    <div class="avatar-block">
+      <div class="avatar-ring">НШ</div>
+      <div>
+        <h1>Николай<br>Шамов</h1>
+        <p class="role" style="margin-top:6px">Senior Frontend Developer</p>
+      </div>
+    </div>
+
+    <!-- CONTACTS -->
+    <div class="s-section">
+      <p class="s-label">Контакты</p>
+      <div class="contact-item"><span class="ic">✆</span><span>+7 (925) 757-57-05</span></div>
+      <div class="contact-item"><span class="ic">⌖</span><span>Москва, Россия</span></div>
+      <div class="contact-item"><span class="ic">🌐</span><span>Готов к удалённой работе</span></div>
+      <div class="contact-item"><span class="ic">in</span><a href="https://www.linkedin.com/in/nikolay-shamov-492665213" target="_blank" style="color:var(--accent);text-decoration:none;">linkedin.com/in/nikolay-shamov-492665213</a></div>
+    </div>
+
+    <!-- TECH SKILLS -->
+    <div class="s-section">
+      <p class="s-label">Core Stack</p>
+      <div class="tag-wrap">
+        <span class="tag hot">React.js</span>
+        <span class="tag hot">TypeScript</span>
+        <span class="tag hot">GraphQL</span>
+        <span class="tag hot">Effector</span>
+        <span class="tag">Redux / RTK</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">REST API</span>
+        <span class="tag">WebSockets</span>
+        <span class="tag">TanStack Table</span>
+        <span class="tag">ECharts</span>
+        <span class="tag">Vite</span>
+        <span class="tag">Webpack</span>
+        <span class="tag">JavaScript ES2024</span>
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">Git</span>
+      </div>
+    </div>
+
+    <!-- TOOLS -->
+    <div class="s-section">
+      <p class="s-label">Инструменты & AI</p>
+      <div class="tag-wrap">
+        <span class="tag hot">Windsurf AI</span>
+        <span class="tag hot">Claude AI</span>
+        <span class="tag">Figma</span>
+        <span class="tag">Jira</span>
+        <span class="tag">GitLab CI/CD</span>
+        <span class="tag">Storybook</span>
+        <span class="tag">Vitest</span>
+      </div>
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="s-section">
+      <p class="s-label">Языки</p>
+      <div class="lang-item"><span class="lang-name">Русский</span><span class="lang-level">Родной</span></div>
+      <div class="lang-item"><span class="lang-name">Английский</span><span class="lang-level">B1 — Intermediate</span></div>
+    </div>
+
+
+
+  </aside>
+
+  <!-- ══════════ MAIN ══════════ -->
+  <main class="main">
+
+    <!-- SUMMARY -->
+    <section class="m-section">
+      <p class="m-label">Профиль</p>
+      <p class="summary">
+        <strong>Senior Frontend Developer</strong> с <strong>6+ годами</strong> коммерческого опыта во фронтенд-разработке.
+        Специализируюсь на архитектуре сложных SPA, проектировании дизайн-систем и технологической
+        трансформации кодовых баз. Строю системы: от архитектурных решений, которые переживают
+        смену требований, до стандартов, при которых каждый следующий разработчик в команде
+        стартует быстрее предыдущего. Активно использую AI-инструменты — не как тренд,
+        а как часть рабочего процесса.
+      </p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="m-section">
+      <p class="m-label">Опыт работы</p>
+
+      <div class="job">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Senior Frontend Developer</div>
+            <div class="job-company">Alma Services Company</div>
+          </div>
+          <div class="job-meta">
+            <div class="job-date">Февраль 2022 — настоящее время</div>
+            <div class="job-duration">4 года 2 месяца</div>
+          </div>
+        </div>
+        <ul class="bullets">
+          <li><strong>Архитектура продуктов:</strong> спроектировал и запустил SPA-приложения с нуля до продакшена; самостоятельно принимал технические решения по стеку и структуре данных, обеспечивал долгосрочную поддержку кодовой базы.</li>
+          <li><strong>Технологическая трансформация:</strong> провёл поэтапную миграцию кодовой базы на современные подходы — объём кода в обновлённых модулях сократился на <strong>≥20%</strong>.</li>
+          <li><strong>Корпоративная дизайн-система:</strong> разработал и задокументировал UI-кит, переиспользуемый в нескольких продуктах отдела; сократил стоимость разработки типовых фич на <strong>15–20%</strong>.</li>
+          <li><strong>Стандартизация инструментария:</strong> внедрил единые решения для работы с данными, формами и визуализацией; подходы приняты как стандарт отдела и применяются командой самостоятельно.</li>
+          <li><strong>Менторство и качество кода:</strong> обеспечил <strong>100% покрытие MR</strong> ревью со средним временем ответа ≤1 рабочего дня; вырастил разработчиков до уровня самостоятельного закрытия задач средней сложности.</li>
+          <li><strong>Управление техническим долгом:</strong> удерживал объём debt-задач в бэклоге на стабильном уровне при активном росте продукта.</li>
+          <li><strong>AI-акселерация:</strong> внедрил AI-инструменты в ежедневный рабочий процесс команды; автоматизировал повторяющиеся сценарии разработки, создал внутреннюю базу знаний — практики переняли коллеги.</li>
+          <li><strong>Кросс-функциональное лидерство:</strong> возглавлял архитектурные обсуждения с backend, QA и дизайном; проактивно сигнализировал о рисках и блокерах заблаговременно.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Frontend Developer</div>
+            <div class="job-company">IT-TechGroup</div>
+          </div>
+          <div class="job-meta">
+            <div class="job-date">Сентябрь 2020 — Февраль 2022</div>
+            <div class="job-duration">1 год 6 месяцев</div>
+          </div>
+        </div>
+        <ul class="bullets">
+          <li>Разрабатывал и поддерживал <strong>smi2.ru</strong> — высоконагруженный новостной агрегатор с широкой аудиторией; стек React, Redux, REST API.</li>
+          <li>Реализовывал новые фичи и оптимизировал производительность рендеринга списков; самостоятельно устранял баги по заявкам пользователей.</li>
+          <li>Выстраивал взаимодействие с backend-командой на уровне API-контрактов; участвовал в code review в рамках командного PR-процесса.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Frontend Developer</div>
+            <div class="job-company">IT-аутсорсинг</div>
+          </div>
+          <div class="job-meta">
+            <div class="job-date">Август 2019 — Сентябрь 2020</div>
+            <div class="job-duration">1 год 2 месяца</div>
+          </div>
+        </div>
+        <ul class="bullets">
+          <li>Разработал десктопную и мобильную версии B2B-приложения по поиску специализированного оборудования — адаптивная вёрстка, JavaScript, REST API.</li>
+          <li>Реализовал модули фильтрации, каталога и карточек товаров; обеспечил кроссбраузерную и кроссплатформенную совместимость.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- KEY ACHIEVEMENTS -->
+    <section class="m-section">
+      <p class="m-label">Ключевые достижения</p>
+      <ul class="bullets">
+        <li><strong>Влияние на скорость команды:</strong> типовые задачи (форма, таблица, CRUD-экран) закрываются на <strong>15–20% быстрее</strong>.</li>
+        <li><strong>Масштаб влияния:</strong> архитектурные подходы и процессы, выстроенные для одного продукта, переняты смежными командами и стали стандартом фронтенд-отдела.</li>
+        <li><strong>Рост команды:</strong> разработчики под наставничеством вышли на уровень самостоятельного закрытия задач средней сложности без существенных правок.</li>
+        <li><strong>Устойчивость продукта:</strong> объём технического долга удерживается на стабильном уровне при непрерывном росте функциональности.</li>
+        <li><strong>AI-лидерство:</strong> один из первых в отделе, кто системно внедрил AI в рабочий процесс; выстроил внутреннюю экспертизу, которую переняли коллеги.</li>
+      </ul>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="m-section">
+      <p class="m-label">Образование</p>
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">Инженер по информационным технологиям</div>
+          <div class="edu-school">Академия МО РФ (ГРУ) · Москва</div>
+        </div>
+        <div class="edu-year">2008–2013</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+</body>
+</html>
